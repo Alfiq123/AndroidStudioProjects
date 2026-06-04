@@ -45,8 +45,8 @@ class MainActivity : ComponentActivity() {
 fun ComposeTaskManager() {
     TaskManager(
         image = painterResource(id = R.drawable.ic_task_completed),
-        firstText = stringResource(R.string.first_text),
-        secondText = stringResource(R.string.second_text)
+        firstText = stringResource(id = R.string.first_text),
+        secondText = stringResource(id = R.string.second_text)
     )
 }
 
