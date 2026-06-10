@@ -63,17 +63,15 @@ sealed class Screen(
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onCategoryClick: (String) -> Unit) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        // Text(text = "Home Screen")
-        LinearDeterminateIndicator()
+        KategoriMateri(onCategoryClick = onCategoryClick)
     }
 }
 
 @Composable
 fun StudyScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        // Text(text = "Study Screen")
         CircularDeterminateIndicator()
     }
 }
@@ -81,7 +79,6 @@ fun StudyScreen() {
 @Composable
 fun PracticeScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        // Text(text = "Study Screen")
         IndeterminateLinearIndicator()
     }
 }
@@ -89,7 +86,6 @@ fun PracticeScreen() {
 @Composable
 fun ProfileScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        // Text(text = "Profile Screen")
         IndeterminateCircularIndicator()
     }
 }
@@ -97,7 +93,6 @@ fun ProfileScreen() {
 @Composable
 fun SettingScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        // Text(text = "Settings Screen")
         LinearProgressIndicator()
     }
 }
@@ -115,33 +110,62 @@ fun NavigationIcon(
         enterTransition = {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Left,
-                animationSpec = tween(500)
+                animationSpec = tween(durationMillis = 500)
             )
         },
         exitTransition = {
             slideOutOfContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Left,
-                animationSpec = tween(500)
+                animationSpec = tween(durationMillis = 500)
             )
         },
         popEnterTransition = {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Right,
-                animationSpec = tween(500)
+                animationSpec = tween(durationMillis = 500)
             )
         },
         popExitTransition = {
             slideOutOfContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Right,
-                animationSpec = tween(500)
+                animationSpec = tween(durationMillis = 500)
             )
         }
     ) {
-        composable(Screen.Home.route) { HomeScreen() }
+        composable(Screen.Home.route) { 
+            HomeScreen(onCategoryClick = { route -> navController.navigate(route) }) 
+        }
         composable(Screen.Study.route) { StudyScreen() }
         composable(Screen.Practice.route) { PracticeScreen() }
         composable(Screen.Profile.route) { ProfileScreen() }
         composable(Screen.Settings.route) { SettingScreen() }
+
+        // Route untuk Kategori
+        composable(route = "dasar") {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Halaman Dasar HTML")
+            }
+        }
+        composable(route = "elemen") {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Halaman Elemen")
+            }
+        }
+        composable(route = "attribut") {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Halaman Attribut")
+            }
+        }
+        composable(route = "tabel") {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Halaman Tabel")
+            }
+        }
+        composable(route = "form") {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Halaman Form")
+            }
+        }
     }
 }
 

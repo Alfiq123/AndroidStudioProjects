@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -36,21 +37,25 @@ sealed class Screen(
         icon = Icons.Default.Home,
         route = "home"
     )
+
     object Materi : Screen(
         title = "Materi",
         icon = Icons.Default.Book,
         route = "materi"
     )
+
     object Praktik : Screen(
         title = "Praktik",
         icon = Icons.Default.Assignment,
         route = "praktik"
     )
+
     object Latihan : Screen(
         title = "Latihan",
         icon = Icons.Default.LaptopChromebook,
         route = "latihan"
     )
+
     object Profil : Screen(
         title = "Profil",
         icon = Icons.Default.Person,
